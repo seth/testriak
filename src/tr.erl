@@ -9,8 +9,14 @@
 -include_lib("eunit/include/eunit.hrl").
 
 riak_client() ->
-    {ok, Pid} = riakc_pb_socket:start(?riak_ip, ?riak_port),
-    pong = riakc_pb_socket:ping(Pid),
+    case get(the_client) of
+        {ok, Pid} ->
+            Pid;
+        undefined ->
+            {ok, Pid} = riakc_pb_socket:start(?riak_ip, ?riak_port),
+            pong = riakc_pb_socket:ping(Pid),
+            put(the_client, {ok, Pid})
+    end,
     Pid.
 
 create_stuff(DS, Id, Item) ->
@@ -46,6 +52,7 @@ get_stuff(DS, Id) ->
 
 rt_1_test() ->
     Pid = riak_client(),
+    ?debugVal(Pid),
     Id = <<"123">>,
     ok = riakc_pb_socket:delete(Pid, ?bucket, Id),
     ok = create_stuff(Pid, Id, [1, 2, 3]),
@@ -53,6 +60,7 @@ rt_1_test() ->
 
 rt_2_test() ->
     Pid = riak_client(),
+    ?debugVal(Pid),
     Id = <<"abc">>,
     ok = riakc_pb_socket:delete(Pid, ?bucket, Id),
     ok = create_stuff(Pid, Id, [a, b, c]),
@@ -60,6 +68,7 @@ rt_2_test() ->
 
 rt_3_test() ->
     Pid = riak_client(),
+    ?debugVal(Pid),
     Id = <<"xyz">>,
     ok = riakc_pb_socket:delete(Pid, ?bucket, Id),
     ok = create_stuff(Pid, Id, [x, y, z]),

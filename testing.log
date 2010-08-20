@@ -1,0 +1,78 @@
+./rebar eunit skip_deps=true
+==> testriak (eunit)
+
+=INFO REPORT==== 20-Aug-2010::11:41:10 ===
+{created_stuff,[1,2,3]}
+
+=INFO REPORT==== 20-Aug-2010::11:41:10 ===
+{created_stuff,[a,b,c]}
+
+=INFO REPORT==== 20-Aug-2010::11:41:10 ===
+{created_stuff,[x,y,z]}
+tr: rt_3_test...*failed*
+::error:{assertMatch_failed,[{module,tr},
+                           {line,66},
+                           {expression,"get_stuff ( Pid , Id )"},
+                           {expected,"{ stuff , [ [ x , y , z ] ] }"},
+                           {value,{error,notfound}}]}
+  in function tr:'-rt_3_test/0-fun-0-'/1
+
+
+=======================================================
+  Failed: 1.  Skipped: 0.  Passed: 2.
+ERROR: One or more eunit tests failed.
+make: *** [test] Error 1
+./rebar eunit skip_deps=true
+==> testriak (eunit)
+
+=INFO REPORT==== 20-Aug-2010::11:41:11 ===
+{created_stuff,[1,2,3]}
+tr: rt_1_test...*failed*
+::error:{assertMatch_failed,[{module,tr},
+                           {line,52},
+                           {expression,"get_stuff ( Pid , Id )"},
+                           {expected,"{ stuff , [ [ 1 , 2 , 3 ] ] }"},
+                           {value,{error,notfound}}]}
+  in function tr:'-rt_1_test/0-fun-0-'/1
+
+
+
+=INFO REPORT==== 20-Aug-2010::11:41:11 ===
+{created_stuff,[a,b,c]}
+tr: rt_2_test...*failed*
+::error:{assertMatch_failed,[{module,tr},
+                           {line,59},
+                           {expression,"get_stuff ( Pid , Id )"},
+                           {expected,"{ stuff , [ [ a , b , c ] ] }"},
+                           {value,{stuff,[[a,b,c],[a,b,c]]}}]}
+  in function tr:'-rt_2_test/0-fun-0-'/1
+
+
+
+=INFO REPORT==== 20-Aug-2010::11:41:11 ===
+{created_stuff,[x,y,z]}
+tr: rt_3_test...*failed*
+::error:{assertMatch_failed,[{module,tr},
+                           {line,66},
+                           {expression,"get_stuff ( Pid , Id )"},
+                           {expected,"{ stuff , [ [ x , y , z ] ] }"},
+                           {value,{error,notfound}}]}
+  in function tr:'-rt_3_test/0-fun-0-'/1
+
+
+=======================================================
+  Failed: 3.  Skipped: 0.  Passed: 0.
+ERROR: One or more eunit tests failed.
+make: *** [test] Error 1
+./rebar eunit skip_deps=true
+==> testriak (eunit)
+
+=INFO REPORT==== 20-Aug-2010::11:41:12 ===
+{created_stuff,[1,2,3]}
+
+=INFO REPORT==== 20-Aug-2010::11:41:12 ===
+{created_stuff,[a,b,c]}
+
+=INFO REPORT==== 20-Aug-2010::11:41:12 ===
+{created_stuff,[x,y,z]}
+  All 3 tests passed.
